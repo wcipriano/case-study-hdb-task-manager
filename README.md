@@ -7,29 +7,65 @@ A simple web application to store your To-Do Tasks .
 - User Authentication
 - Easy to use and deploy locally.
 
-# Requirements
 
-Execute the following command to install the required third party libraries:
+# Setup for run locally
 
-```pip3 install -r requirements.txt```
+## Clone
+Clone the repository and open it using the following commands:
+
+   ```git clone git@github.com:wcipriano/case-study-hdb-task-manager.git```
+
+   ```cd  case-study-hdb-task-manager```
+
+## Setup python
+
+Install python version >= 3.11 like this example: 
+
+   ```sudo apt install python3.11 python3.11-venv ```
+
+Install virtual env like this example:
+
+   ```python3.11 -m venv .venv```
+
+Activate virtual env
+
+   ```source ./.venv/bin/activate```
+
+
+## Setup app
+
+1. Requirements
+
+Execute the following command to install the required third party libraries, and then, open app dir:
+
+   ```pip3 install -r requirements.txt```
+
+   ``` cd todo_project ```
+
+
+2. Create .env file
+
+    ```echo -e "FLASK_APP=todo_project\nFLASK_ENV=development\nFLASK_DEBUG=1\nFLASK_RUN_PORT=8080" > .env```
+
+
+4. Run this command to start the application
+
+    ``` flask run ```
+
 
 # Usage
 
-1. Clone the repository using the following command
+1. Setup database 
     
-    ```git clone https://github.com/AdityaBagad/Task-Manager-using-Flask.git```
+    ```bash
+    flask db init 
+    flask db migrate -m "Init DB"
+    flask db upgrade
+   ```
 
-2. Install the dependencies using
+2. Open url in your favorite browser and enjoy:
+   http://localhost:8080
 
-    ```cd  Task-Manager-using-Flask```
-    
-    ```pip3 install -r requirements.txt```
-
-3. Run this command to start the application
-
-    ```cd todo_project```
-
-    ```python run.py```
 
 # Results
 
