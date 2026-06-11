@@ -10,12 +10,12 @@ on:
       - master
 
 env:
-  PYTHON_VERSION: 3.11
+  PYTHON_VERSION: 3.11.15
 
 jobs:
   build:
     name: build and test
-    runs-on: python:3.11-slim
+    runs-on: ubuntu-latest
     steps:
       - name: Checkout
         uses: actions/checkout@v6
