@@ -45,7 +45,7 @@ Execute the following command to install the required third party libraries, and
 
 2. Create .env file
 
-    ```echo -e "FLASK_APP=todo_project\nFLASK_ENV=development\nFLASK_DEBUG=1\nFLASK_RUN_PORT=8080" > .env```
+    ```echo -e "FLASK_APP=todo_app\nFLASK_ENV=development\nFLASK_DEBUG=1\nFLASK_RUN_PORT=8080" > .env```
 
 
 4. Run this command to start the application

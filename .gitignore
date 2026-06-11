@@ -131,3 +131,6 @@ todo_project/todo_project/site.db
 
 # IDE config
 .idea
+
+# Migrations (temp)
+migrations
