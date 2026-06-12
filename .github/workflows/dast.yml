@@ -2,9 +2,9 @@ name: DAST com OWASP ZAP
 
 on:
   push:
-    branches: [main, homolog]
+    branches: [master, hml]
   pull_request:
-    branches: [main, homolog]
+    branches: [master, hml]
 
 jobs:
   dast-scan:
