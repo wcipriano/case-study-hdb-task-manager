@@ -27,8 +27,8 @@ jobs:
       - name: Create DB
         run: | 
           cd ./todo_project
-          flask --app todo_app db init 
-          flask --app todo_app db migrate -m "Init DB"
+          flask --app ${{ vars.FLASK_APP }} db init 
+          flask --app ${{ vars.FLASK_APP }} db migrate -m "Init DB"
           flask --app ${{ vars.FLASK_APP }} db upgrade
       - name: Run tests
         run: pytest -v --cov-report=xml --cov=./ --cov-branch
