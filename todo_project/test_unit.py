@@ -6,7 +6,7 @@ from todo_app.models import User
 # @pytest.fixture(autouse=True, scope="class")
 @pytest.fixture(scope="class")
 def app():
-    config = dict(SQLALCHEMY_DATABASE_URI="sqlite:///test.db", TESTING=True)
+    config = dict(SECRET_KEY="45cf93c4d41348cd9980674ade9a7356", SQLALCHEMY_DATABASE_URI="sqlite:///test.db")
     # config = dict(SQLALCHEMY_DATABASE_URI="sqlite:///:memory:", TESTING=True, SQLALCHEMY_TRACK_MODIFICATIONS=False)
     app = create_app(config)
     yield app  # Provide the app instance to tests
