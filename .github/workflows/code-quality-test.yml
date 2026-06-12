@@ -32,5 +32,8 @@ jobs:
       - name: SAST - Code Security
         run: bandit *
 
-      - name: SAST - Dependency check
-        run: pip-audit -r requirements.txt
+      # Run the dedicated Python vulnerability scanner
+      - name: SAST - Dependency check with Pip Audit
+        uses: pypa/gh-action-pip-audit@v1.1.0
+        with:
+          inputs: requirements.txt
