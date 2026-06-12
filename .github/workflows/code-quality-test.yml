@@ -6,6 +6,7 @@ on:
   push:
     branches:
       - dev
+      - dev2
       - hml
       - master
 
@@ -25,14 +26,7 @@ jobs:
           python -m pip install --upgrade pip
           pip install -r requirements.txt -r requirements-dev.txt
       - name: Run tests
-        run: | 
-          cd ./todo_project
-          flask --app ${{ vars.FLASK_APP }} db init 
-          flask --app ${{ vars.FLASK_APP }} db migrate -m "Init DB"
-          flask --app ${{ vars.FLASK_APP }} db upgrade
-          pytest -v --cov-report=xml --cov=./ --cov-branch
-      #- name: Run tests
-      #  run: pytest -v --cov-report=xml --cov=./ --cov-branch
+        run: python -m pytest -v --cov-report=xml --cov=./ --cov-branch
       - name: Upload coverage reports to Codecov
         uses: codecov/codecov-action@v5
         with:

@@ -127,7 +127,7 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
-todo_project/todo_project/site.db
+project/todo_project/site.db
 
 # IDE config
 .idea
