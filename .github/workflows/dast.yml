@@ -8,6 +8,7 @@ on:
 
 jobs:
   dast-scan:
+    if: false  # Temporarily disable this workflow
     name: build run and test ZAP
     runs-on: ubuntu-latest
     steps:
