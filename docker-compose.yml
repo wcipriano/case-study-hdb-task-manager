@@ -20,7 +20,6 @@ services:
       - .env
     networks:
       - web
-
   prometheus:
     image: prom/prometheus
     container_name: tm_prometheus
@@ -32,7 +31,6 @@ services:
       - 9090:9090
     networks:
       - web
-
   grafana:
     image: grafana/grafana
     container_name: tm_grafana
@@ -45,6 +43,7 @@ services:
       GF_USERS_ALLOW_SIGN_UP: 'false'
     volumes:
       - ./grafana:/var/lib/grafana
+      - ./grafana-provisioning:/etc/grafana/provisioning:ro
     ports:
       - 3000:3000
     depends_on:
