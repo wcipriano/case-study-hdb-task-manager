@@ -34,4 +34,4 @@ def receive_after_insert(mapper, connection, target):
     task_counter.inc()
 
 # Event listener
-event.listen(Task, 'after_insert', receive_after_insert
+event.listen(Task, 'after_insert', receive_after_insert)
