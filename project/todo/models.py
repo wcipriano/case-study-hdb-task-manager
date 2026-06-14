@@ -1,6 +1,7 @@
-from project import db, login as login_manager
+from project import db, login as login_manager, task_counter
 from datetime import datetime
 from flask_login import UserMixin
+from sqlalchemy import event
 
 
 @login_manager.user_loader
@@ -26,3 +27,11 @@ class Task(db.Model):
 
     def __repr__(self):
         return f"Task('{self.content}', '{self.date_posted}', '{self.user_id}')"
+
+
+def receive_after_insert(mapper, connection, target):
+    print(f"*** New event created with ID: {target.id} and Name: {target.content}\n")
+    task_counter.inc()
+
+# Event listener
+event.listen(Task, 'after_insert', receive_after_insert

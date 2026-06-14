@@ -30,6 +30,8 @@ services:
       - ./prometheus/data:/prometheus
     ports:
       - 9090:9090
+    networks:
+      - web
 
   grafana:
     image: grafana/grafana
@@ -47,6 +49,8 @@ services:
       - 3000:3000
     depends_on:
       - prometheus
+    networks:
+      - web
 
 volumes:
   taskdb:

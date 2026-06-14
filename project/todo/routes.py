@@ -13,6 +13,7 @@ from .models import User, Task
 
 # Import 
 from flask_login import login_required, current_user, login_user, logout_user
+from prometheus_client import generate_latest
 
 
 @users_blueprint.errorhandler(404)
@@ -157,3 +158,9 @@ def change_password():
             flash('Please Enter Correct Password', 'danger') 
 
     return render_template('change_password.html', title='Change Password', form=form)
+
+
+@users_blueprint.route("/metrics", methods=['GET'])
+def metrics():
+    # Retorna o conjunto de métricas geradas no formato que o Prometheus entende
+    return generate_latest(), 200, {'Content-Type': 'text/plain; charset=utf-8'}
