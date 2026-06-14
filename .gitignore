@@ -134,3 +134,7 @@ project/todo_project/site.db
 
 # Migrations (temp)
 migrations
+
+# Monitoring
+prometheus
+grafana
