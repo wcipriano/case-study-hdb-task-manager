@@ -1,6 +1,6 @@
 from flask import render_template, url_for, flash, redirect, request
 from werkzeug.security import check_password_hash, generate_password_hash
-from project import db
+from project import db, create_app
 
 from . import users_blueprint
 
@@ -13,6 +13,7 @@ from .models import User, Task
 
 # Import 
 from flask_login import login_required, current_user, login_user, logout_user
+from prometheus_client import generate_latest
 
 
 @users_blueprint.errorhandler(404)
@@ -40,6 +41,7 @@ def login():
         return redirect(url_for('todo.all_tasks'))
 
     form = LoginForm()
+    app= create_app()
     # After you submit the form
     if form.validate_on_submit():
         user = User.query.filter_by(username=form.username.data).first()
@@ -47,16 +49,20 @@ def login():
         if user and check_password_hash(user.password, form.password.data):
             login_user(user)
             task_form = TaskForm()
+            app.logger.info(f'Login Successfull: {form.username.data}')
             flash('Login Successfull', 'success')
             return redirect(url_for('todo.all_tasks'))
         else:
+            app.logger.info(f'Login Unsuccessful: {form.username.data}')
             flash('Login Unsuccessful. Please check Username Or Password', 'danger')
-    
+
     return render_template('login.html', title='Login', form=form)
     
 
 @users_blueprint.route("/logout")
 def logout():
+    app = create_app()
+    app.logger.info(f'Logoff Successfull: {current_user}')
     logout_user()
     return redirect(url_for('todo.login'))
 
@@ -157,3 +163,9 @@ def change_password():
             flash('Please Enter Correct Password', 'danger') 
 
     return render_template('change_password.html', title='Change Password', form=form)
+
+
+@users_blueprint.route("/metrics", methods=['GET'])
+def metrics():
+    # Retorna o conjunto de métricas geradas no formato que o Prometheus entende
+    return generate_latest(), 200, {'Content-Type': 'text/plain; charset=utf-8'}

@@ -67,6 +67,13 @@ Execute the following command to install the required third party libraries, and
    http://localhost:8080
 
 
+# Report
+A comprehensive report containing project documentation is available [here](doc/estudo-caso-relatorio-wc.pdf).
+
+It includes software documentation covering Requirements (SRS), Architecture and Design, Technical and Code Documentation, Operations and Deployment.
+
+
+
 # Results
 
 ## Registration Page

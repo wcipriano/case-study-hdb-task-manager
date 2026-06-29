@@ -9,7 +9,14 @@ from flask.logging import default_handler
 from flask_login import LoginManager
 from flask_sqlalchemy import SQLAlchemy
 from flask_wtf.csrf import CSRFProtect
+from prometheus_client import Counter
 
+
+# Metrics Prometheus
+task_counter = Counter(
+    'TaskCounter',
+    'Contador de novas Tasks incliudas no sistema'
+)
 
 # Create the instances of the Flask extensions (flask-sqlalchemy, flask-login, etc.) in
 # the global scope, but without any arguments passed in.  These instances are not attached
